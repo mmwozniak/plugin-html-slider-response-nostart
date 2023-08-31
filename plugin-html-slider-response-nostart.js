@@ -22,11 +22,11 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               pretty_name: "Max slider",
               default: 100,
           },
-          /** Hides the starting value of the slider */
+          /** Show the starting position of the slider */
           show_slider_start: {
               type: jspsych.ParameterType.BOOL,
-              pretty_name: "Hide slider starting position",
-              default: true,
+              pretty_name: "Show slider starting position",
+              default: false,
           },
           /** Sets the starting value of the slider */
           slider_start: {
@@ -194,7 +194,7 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               // next trial
               this.jsPsych.finishTrial(trialdata);
           };
-          // if marker was hidden change make it visible by changing class
+          // if marker was hidden then make it visible by changing class
           if (trial.show_slider_start === false) {
             document
               .getElementById("jspsych-html-slider-response-response")
