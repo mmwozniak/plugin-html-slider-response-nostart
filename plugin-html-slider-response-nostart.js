@@ -22,6 +22,12 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               pretty_name: "Max slider",
               default: 100,
           },
+          /** Hides the starting value of the slider */
+          hide_slider_start: {
+              type: jspsych.ParameterType.BOOL,
+              pretty_name: "Hide slider starting position",
+              default: true,
+          },
           /** Sets the starting value of the slider */
           slider_start: {
               type: jspsych.ParameterType.INT,
@@ -112,8 +118,12 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               html += "width:auto;";
           }
           html += '">';
-          html +=
-              '<input type="range" class="jspsych-slider-unclicked" value="' + 
+          if (trial.hide_slider_start) {
+            html += '<input type="range" class="jspsych-slider-unclicked" '
+          } else {
+            html += '<input type="range" class="jspsych-slider" '
+          } 
+          html += 'value="' + 
                   trial.slider_start +
                   '" min="' +
                   trial.min +
@@ -123,9 +133,6 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
                   trial.step +
                   '" id="jspsych-html-slider-response-response"></input>';
           html += "<div>";
-
-          
-
           for (var j = 0; j < trial.labels.length; j++) {
               var label_width_perc = 100 / (trial.labels.length - 1);
               var percent_of_range = j * (100 / (trial.labels.length - 1));
@@ -187,14 +194,15 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               // next trial
               this.jsPsych.finishTrial(trialdata);
           };
-          // Added code changing the class from unclicked to clicked - the thumb appears after the first click
-          document
-            .getElementById("jspsych-html-slider-response-response")
-            .addEventListener('click', function(e){ // if a change is registered allow the button to be pressed 
-                e.target.classList.add('jspsych-slider'); 
-                e.target.classList.remove('jspsych-slider-unclicked'); 
-            })
-          // End of added code
+          // if marker was hidden change make it visible by changing class
+          if (trial.hide_slider_start) {
+            document
+              .getElementById("jspsych-html-slider-response-response")
+              .addEventListener('click', function(e){
+                  e.target.classList.add('jspsych-slider'); 
+                  e.target.classList.remove('jspsych-slider-unclicked'); 
+              })
+          }
           display_element
               .querySelector("#jspsych-html-slider-response-next")
               .addEventListener("click", function () {
