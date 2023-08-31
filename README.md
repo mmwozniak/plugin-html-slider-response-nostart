@@ -12,4 +12,4 @@ Use it just like a normal jsPsych plugins, but remember to refer to the files in
  <link href="jspsych_extra.css" rel="stylesheet" type="text/css" />
 ```
 
-Tested on jsPsych 7.1.2
+Tested on jsPsych 7.1.2 and jsPsych 7.3
