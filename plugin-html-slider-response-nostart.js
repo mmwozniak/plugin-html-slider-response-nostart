@@ -23,7 +23,7 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               default: 100,
           },
           /** Hides the starting value of the slider */
-          hide_slider_start: {
+          show_slider_start: {
               type: jspsych.ParameterType.BOOL,
               pretty_name: "Hide slider starting position",
               default: true,
@@ -118,7 +118,7 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               html += "width:auto;";
           }
           html += '">';
-          if (trial.hide_slider_start) {
+          if (trial.show_slider_start === false) {
             html += '<input type="range" class="jspsych-slider-unclicked" '
           } else {
             html += '<input type="range" class="jspsych-slider" '
@@ -195,7 +195,7 @@ var jsPsychHtmlSliderResponseNoStart = (function (jspsych) {
               this.jsPsych.finishTrial(trialdata);
           };
           // if marker was hidden change make it visible by changing class
-          if (trial.hide_slider_start) {
+          if (trial.show_slider_start === false) {
             document
               .getElementById("jspsych-html-slider-response-response")
               .addEventListener('click', function(e){
