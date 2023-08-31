@@ -1,4 +1,4 @@
-# jsPsych slider response but without the starting position
+# jsPsych html-slider-response but without the starting position
 
 The code is the jsPsych slider-response plugin but the response marker appears only after clicking on the slider. Lack of the marker's starting position allows to avoid anchoring effect caused by the initial position.
 Link to the description of the original plugin: https://www.jspsych.org/7.0/plugins/html-slider-response/
